@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Diary</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container mt-4">
+        <br>
+        <h2 class="mb-4">Group Diary</h2>
+
+        <!-- Horizontal Nav tabs -->
+        <div class="d-flex">
+            <ul class="nav nav-tabs flex-nowrap" id="weekTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" data-bs-toggle="tab" data-week="1">Week 1</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-week="2">Week 2</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-week="3">Week 3</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-week="4">Week 4</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-week="5">Week 5</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-week="6">Week 6</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-week="7">Week 7</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-week="8">Week 8</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-bs-toggle="tab" data-week="9">Week 9</button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Table Content -->
+        <div class="table-responsive mt-4">
+            <table class="table table-bordered shadow-sm" id="workTable">
+                <thead>
+                    <tr>
+                        <th>Stt</th>
+                        <th>Mssv</th>
+                        <th>Name</th>
+                        <th>Work</th>
+                        <th>Completion Rate</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Table content will be dynamically populated -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        const weeklyData = {
+            1: [
+                { stt: 1, mssv: "23130075", name: "Lại Thị Hoa", work: "Tìm hiểu github", completion: 100 },
+                { stt: 2, mssv: "23130107", name: "Nguyễn Văn Điền", work: "Tạo web nhóm, chia việc làm", completion: 100 },
+                { stt: 3, mssv: "23130028", name: "Nguyễn Văn Đô", work: "Tìm hiểu github", completion: 90  },
+                { stt: 4, mssv: "23130370", name: "Phùng Thị Minh Thư", work: "Tìm hiểu github", completion: 90 },
+                { stt: 5, mssv: "23130039", name: "Thân Văn Danh", work: "Tìm hiểu github", completion: 80 }
+            ],
+            2: [
+                { stt: 1, mssv: "23130075", name: "Lại Thị Hoa", work: "Code trang Home của web nhóm", completion: 70 },
+                { stt: 2, mssv: "23130107", name: "Nguyễn Văn Điền", work: "Code trang dự án", completion: 90 },
+                { stt: 3, mssv: "23130028", name: "Nguyễn Văn Đô", work: "Code trang thông tin", completion: 90 },
+                { stt: 4, mssv: "23130370", name: "Phùng Thị Minh Thư", work: "Code trang group diary", completion: 100 },
+                { stt: 5, mssv: "23130039", name: "Thân Văn Danh", work: "Code trang giới thiệu, liên hệ, kết quả", completion: 70 }
+            ],
+            3: [
+                { stt: 1, mssv: "23130075", name: "Lại Thị Hoa", work: "Code trang Home của web nhóm", completion: 100 },
+                { stt: 2, mssv: "23130107", name: "Nguyễn Văn Điền", work: "Code trang project", completion: 90 },
+                { stt: 3, mssv: "23130028", name: "Nguyễn Văn Đô", work: "Code trang thông tin", completion: 100 },
+                { stt: 4, mssv: "23130370", name: "Phùng Thị Minh Thư", work: "Code trang group dairy", completion: 100 },
+                { stt: 5, mssv: "23130039", name: "Thân Văn Danh", work: "Code trang style guide", completion: 100 }
+            ],
+            4: [
+                { stt: 1, mssv: "23130075", name: "Lại Thị Hoa", work: "Liên kết các trang lại với nhau", completion: 90 },
+                { stt: 2, mssv: "23130107", name: "Nguyễn Văn Điền", work: "Liên kết các trang lại với nhau", completion: 100 },
+                { stt: 3, mssv: "23130028", name: "Nguyễn Văn Đô", work: "Liên kết các trang lại với nhau", completion: 100 },
+                { stt: 4, mssv: "23130370", name: "Phùng Thị Minh Thư", work: "Liên kết các trang lại với nhau", completion: 100 },
+                { stt: 5, mssv: "23130039", name: "Thân Văn Danh", work: "Liên kết các trang lại với nhau", completion: 100 }
+            ],
+            5: [
+                { stt: 1, mssv: "23130075", name: "Lại Thị Hoa", work: "Meeting chia việc thiết kết web project", completion: 100 },
+                { stt: 2, mssv: "23130107", name: "Nguyễn Văn Điền", work: "Tìm thiết kế", completion: 100 },
+                { stt: 3, mssv: "23130028", name: "Nguyễn Văn Đô", work: "Tìm màu cho phù hợp", completion: 90 },
+                { stt: 4, mssv: "23130370", name: "Phùng Thị Minh Thư", work: "Tìm thiết kế", completion: 100 },
+                { stt: 5, mssv: "23130039", name: "Thân Văn Danh", work: "Tìm thiết kế", completion: 90 }
+            ],
+            6: [
+                { stt: 1, mssv: "23130075", name: "Lại Thị Hoa", work: "", completion: 75 },
+                { stt: 2, mssv: "23130107", name: "Nguyễn Văn Điền", work: "", completion: 50 },
+                { stt: 3, mssv: "23130028", name: "Nguyễn Văn Đô", work: "", completion: 80 },
+                { stt: 4, mssv: "23130370", name: "Phùng Thị Minh Thư", work: "", completion: 60 },
+                { stt: 5, mssv: "23130039", name: "Thân Văn Danh", work: "", completion: 70 }
+            ],
+            7: [
+                { stt: 1, mssv: "23130075", name: "Lại Thị Hoa", work: "Phân chia công việc, duyệt bài", completion: 100 },
+                { stt: 2, mssv: "23130107", name: "Nguyễn Văn Điền", work: "Tìm thiết kế", completion: 100 },
+                { stt: 3, mssv: "23130028", name: "Nguyễn Văn Đô", work: "Tìm màu cho phù hợp", completion: 100 },
+                { stt: 4, mssv: "23130370", name: "Phùng Thị Minh Thư", work: "Tìm thiết kế", completion: 100 },
+                { stt: 5, mssv: "23130039", name: "Thân Văn Danh", work: "Tìm thiết kế", completion: 100 }
+            ],
+            8: [
+                { stt: 1, mssv: "23130075", name: "Lại Thị Hoa", work: "Meeting chia việc thiết kết web project", completion: 100 },
+                { stt: 2, mssv: "23130107", name: "Nguyễn Văn Điền", work: "Tìm thiết kế", completion: 90 },
+                { stt: 3, mssv: "23130028", name: "Nguyễn Văn Đô", work: "Tìm màu cho phù hợp", completion: 100 },
+                { stt: 4, mssv: "23130370", name: "Phùng Thị Minh Thư", work: "Tìm thiết kế", completion: 100 },
+                { stt: 5, mssv: "23130039", name: "Thân Văn Danh", work: "Tìm thiết kế", completion: 100 }
+            ],
+            9: [
+                { stt: 1, mssv: "23130075", name: "Lại Thị Hoa", work: "Meeting chia việc thiết kết web project", completion: 100 },
+                { stt: 2, mssv: "23130107", name: "Nguyễn Văn Điền", work: "Tìm thiết kế", completion: 100 },
+                { stt: 3, mssv: "23130028", name: "Nguyễn Văn Đô", work: "Tìm màu cho phù hợp", completion: 100 },
+                { stt: 4, mssv: "23130370", name: "Phùng Thị Minh Thư", work: "Tìm thiết kế", completion: 100 },
+                { stt: 5, mssv: "23130039", name: "Thân Văn Danh", work: "Tìm thiết kế", completion: 100 }
+            ]
+        };
+
+        function generateProgressBar(percentage) {
+            let colorClass = 'bg-info';
+            if (percentage >= 90) colorClass = 'bg-success';
+            else if (percentage >= 70) colorClass = 'bg-primary';
+            else if (percentage >= 50) colorClass = 'bg-warning';
+            else colorClass = 'bg-danger';
+
+            return `
+                <div class="progress">
+                    <div class="progress-bar ${colorClass}" role="progressbar" 
+                         style="width: ${percentage}%" 
+                         aria-valuenow="${percentage}" 
+                         aria-valuemin="0" 
+                         aria-valuemax="100">${percentage}%</div>
+                </div>
+            `;
+        }
+
+        function updateTable(weekNumber) {
+            const tableBody = document.getElementById('tableBody');
+            const weekData = weeklyData[weekNumber];
+            
+            tableBody.innerHTML = weekData.map(person => `
+                <tr>
+                    <td>${person.stt}</td>
+                    <td>${person.mssv}</td>
+                    <td>${person.name}</td>
+                    <td>${person.work}</td>
+                    <td>${generateProgressBar(person.completion)}</td>
+                </tr>
+            `).join('');
+        }
+
+        document.querySelectorAll('.nav-link').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                document.querySelectorAll('.nav-link').forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+                updateTable(e.target.getAttribute('data-week'));
+            });
+        });
+
+        // Initialize table for Week 1
+        updateTable(1);
+    </script>
+
+</body>
+
+</html>
